@@ -1,0 +1,1617 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ Твое Пространство Света и Гармонии ✨</title> <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        /* ============================================= */
+        /* CSS ПЕРЕМЕННЫЕ (Для темной и светлой темы)   */
+        /* ============================================= */
+        :root {
+            /* Светлая тема - нежные, пастельные тона с акцентами */
+            --bg-color-light: #fce4ec; /* Очень светлый розовый */
+            --text-color-light: #4a148c; /* Глубокий фиолетовый */
+            --primary-color-light: #e91e63; /* Яркий розово-красный (акцент 1) */
+            --secondary-color-light: #8e24aa; /* Более насыщенный пурпурный (акцент 2) */
+            --card-bg-light: rgba(255, 255, 255, 0.95); /* Максимально непрозрачное стекло */
+            --glass-border-light: rgba(171, 71, 188, 0.8); /* Граница под цвет secondary, более видимая */
+            --shadow-light: 0 25px 80px rgba(142, 36, 170, 0.4); /* Более мягкая и широкая тень для карточек */
+            --button-bg-light: linear-gradient(145deg, var(--primary-color-light), #c2185b); /* Градиент кнопки */
+            --button-text-light: #ffffff; /* Цвет текста на кнопке */
+            --header-bg-light: rgba(244, 143, 177, 0.98); /* Почти непрозрачная шапка */
+            --footer-bg-light: rgba(244, 143, 177, 0.95); /* Почти непрозрачный футер */
+            --gradient-bg-light: linear-gradient(180deg, #fce4ec 0%, #e1bee7 50%, #f8bbd0 100%); /* Расширенный градиент для фона body */
+            --hover-glow-light: rgba(233, 30, 99, 0.7); /* Цвет свечения при наведении на элементы */
+            --section-title-shadow-light: rgba(0,0,0,0.15); /* Тень для заголовков секций */
+
+
+            /* Темная тема - глубокие, насыщенные тона */
+            --bg-color-dark: #1a237e; /* Темно-синий */
+            --text-color-dark: #e1bee7; /* Очень светлый пурпурный */
+            --primary-color-dark: #e91e63; /* Тот же яркий акцент */
+            --secondary-color-dark: #ce93d8; /* Светлый пурпурный */
+            --card-bg-dark: rgba(33, 33, 33, 0.9); /* Темно-серое стекло, менее прозрачное */
+            --glass-border-dark: rgba(123, 31, 162, 0.7); /* Граница под цвет secondary */
+            --shadow-dark: 0 25px 80px rgba(0, 0, 0, 0.8); /* Более выраженная и широкая тень */
+            --button-bg-dark: linear-gradient(145deg, var(--primary-color-dark), #ab003c); /* Градиент кнопки в темной теме */
+            --button-text-dark: #ffffff;
+            --header-bg-dark: rgba(0, 0, 0, 0.95); /* Почти непрозрачная шапка */
+             --footer-bg-dark: rgba(0, 0, 0, 0.9); /* Почти непрозрачный футер */
+             --gradient-bg-dark: linear-gradient(180deg, #1a237e 0%, #311b92 50%, #1a237e 100%); /* Расширенный градиент для темного фона body */
+             --hover-glow-dark: rgba(233, 30, 99, 0.9); /* Цвет свечения при наведении */
+             --section-title-shadow-dark: rgba(255,255,255,0.1); /* Тень для заголовков секций в темной теме */
+        }
+
+        /* Применение переменных в зависимости от темы */
+        body.dark-theme {
+            --bg-color-light: var(--bg-color-dark);
+            --text-color-light: var(--text-color-dark);
+            --primary-color-light: var(--primary-color-dark);
+            --secondary-color-light: var(--secondary-color-dark);
+            --card-bg-light: var(--card-bg-dark);
+            --glass-border-light: var(--glass-border-dark);
+            --shadow-light: var(--shadow-dark);
+            --button-bg-light: var(--button-bg-dark);
+            --button-text-light: var(--button-text-dark);
+            --header-bg-light: var(--header-bg-dark);
+            --footer-bg-light: var(--footer-bg-dark);
+            --gradient-bg-light: var(--gradient-bg-dark);
+            --hover-glow-light: var(--hover-glow-dark);
+        }
+
+        /* ============================================= */
+        /* ОСНОВНЫЕ СТИЛИ СТРАНИЦЫ                      */
+        /* ============================================= */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box; /* Учитываем padding и border в размере элемента */
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif; /* Основной шрифт для текста */
+            line-height: 1.8; /* Межстрочный интервал */
+            background: var(--gradient-bg-light); /* Фон с градиентом */
+            color: var(--text-color-light); /* Цвет текста */
+            transition: background 1.5s ease-in-out, color 1s ease; /* Плавный переход тем */
+            overflow-x: hidden; /* Скрываем горизонтальную прокрутку */
+            padding-top: 90px; /* Отступ сверху для фиксированной шапки */
+            position: relative; /* Для позиционирования фоновых элементов */
+             min-height: 100vh; /* Минимальная высота для корректного отображения градиента */
+        }
+
+        /* Декоративные фоновые элементы с размытием */
+        body::before, body::after {
+            content: '';
+            position: fixed; /* Фиксированное положение */
+            width: 450px; /* Размер */
+            height: 450px; /* Размер */
+            border-radius: 50%; /* Круглая форма */
+            filter: blur(180px); /* Сильное размытие */
+            z-index: -2; /* Располагаем под всем контентом */
+            opacity: 0.6; /* Прозрачность */
+            transition: background-color 1s ease; /* Плавный переход цвета при смене темы */
+             pointer-events: none; /* Игнорируем события мыши */
+        }
+
+        body::before {
+            top: -120px; /* Позиция */
+            left: -120px; /* Позиция */
+            background-color: var(--primary-color-light); /* Цвет */
+             animation: float 15s ease-in-out infinite alternate; /* Анимация перемещения */
+        }
+         body::after {
+            bottom: -120px; /* Позиция */
+            right: -120px; /* Позиция */
+            background-color: var(--secondary-color-light); /* Цвет */
+             animation: float 16s ease-in-out infinite alternate reverse; /* Анимация перемещения в обратную сторону */
+        }
+
+         /* Анимация плавного перемещения */
+         @keyframes float {
+            0% { transform: translateY(0px) translateX(0px); }
+            50% { transform: translateY(60px) translateX(40px); }
+            100% { transform: translateY(0px) translateX(0px); }
+        }
+
+        /* Основной контейнер для контента */
+        .container {
+            width: 90%;
+            max-width: 1300px; /* Максимальная ширина контейнера */
+            margin: 0 auto; /* Центрирование */
+            padding: 50px 20px; /* Внутренние отступы */
+        }
+
+        /* ============================================= */
+        /* ШАПКА САЙТА (HEADER)                         */
+        /* ============================================= */
+        .site-header {
+            background-color: var(--header-bg-light); /* Фон шапки */
+            backdrop-filter: blur(25px); /* Эффект размытия (Glassmorphism) */
+            -webkit-backdrop-filter: blur(25px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3); /* Тень под шапкой */
+            padding: 15px 0; /* Внутренние отступы */
+            position: fixed; /* Фиксированное положение вверху */
+            top: 0;
+            left: 0;
+            width: 100%; /* Полная ширина */
+            z-index: 1000; /* Выше другого контента */
+            transition: background-color 0.5s ease; /* Плавный переход цвета фона */
+        }
+
+        .site-header .container {
+            display: flex; /* Flexbox для выравнивания элементов */
+            justify-content: space-between; /* Распределяем элементы по краям */
+            align-items: center; /* Выравнивание по центру по вертикали */
+            padding-top: 0; /* Убираем лишние отступы */
+            padding-bottom: 0;
+        }
+
+        .logo {
+            font-family: 'Pacifico', cursive; /* Красивый шрифт для логотипа */
+            font-size: 2.5em; /* Размер шрифта */
+            font-weight: 400;
+            color: var(--primary-color-light); /* Цвет логотипа */
+            text-decoration: none; /* Убираем подчеркивание */
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.25); /* Тень для текста лого */
+            transition: color 0.3s ease, transform 0.4s ease; /* Плавные переходы */
+        }
+        .logo:hover {
+            color: var(--secondary-color-light); /* Цвет при наведении */
+            transform: scale(1.1) rotate(-3deg); /* Эффект при наведении */
+        }
+        .logo i {
+            margin-right: 10px; /* Отступ справа от иконки */
+            font-size: 0.9em; /* Размер иконки относительно текста */
+        }
+
+        /* Навигационное меню */
+        .main-nav ul {
+            list-style: none; /* Убираем маркеры списка */
+            display: flex; /* Flexbox для горизонтального расположения пунктов */
+            align-items: center; /* Выравнивание по центру по вертикали */
+        }
+
+        .main-nav ul li {
+            margin-left: 45px; /* Отступ между пунктами */
+        }
+
+        .main-nav ul li a {
+            font-family: 'Montserrat', sans-serif; /* Шрифт для текста ссылок */
+            text-decoration: none; /* Убираем подчеркивание */
+            color: var(--text-color-light); /* Цвет текста ссылок */
+            font-weight: 500;
+            padding: 10px 0; /* Внутренние отступы */
+            transition: color 0.3s ease, transform 0.2s ease; /* Плавные переходы */
+            position: relative; /* Для анимации подчеркивания */
+        }
+
+        /* Анимация подчеркивания ссылок меню */
+        .main-nav ul li a::before {
+             content: '';
+             position: absolute;
+             bottom: -5px; /* Располагаем под текстом */
+             left: 0;
+             width: 100%; /* Полная ширина */
+             height: 4px; /* Толщина линии */
+             background-color: var(--secondary-color-light); /* Цвет подчеркивания */
+             transform: scaleX(0); /* Изначально линия скрыта */
+             transform-origin: bottom right; /* Начало анимации справа */
+             transition: transform 0.4s ease; /* Плавное появление */
+        }
+
+        .main-nav ul li a:hover::before, .main-nav ul li a.active::before {
+             transform: scaleX(1); /* Линия появляется при наведении или если пункт активен */
+             transform-origin: bottom left; /* Конец анимации слева */
+        }
+
+        .main-nav ul li a:hover {
+             color: var(--secondary-color-light); /* Цвет текста при наведении */
+        }
+         .main-nav ul li a.active {
+             color: var(--secondary-color-light); /* Цвет текста активного пункта */
+             font-weight: 600; /* Активный пункт жирнее */
+         }
+
+        /* Кнопка переключения тем */
+        .theme-toggle-button {
+            background: none; /* Прозрачный фон */
+            border: none; /* Без рамки */
+            color: var(--text-color-light); /* Цвет иконки */
+            font-size: 2em; /* Размер иконки */
+            cursor: pointer; /* Курсор-указатель */
+            padding: 5px; /* Внутренние отступы */
+            transition: color 0.3s ease, transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Более сложный и выразительный переход */
+            margin-left: 30px; /* Отступ слева */
+             outline: none; /* Убираем стандартный контур при фокусе */
+        }
+        .theme-toggle-button:hover {
+            color: var(--primary-color-light); /* Цвет при наведении */
+            transform: rotate(360deg) scale(1.2); /* Полный оборот и увеличение */
+        }
+
+        /* Кнопка мобильного меню ("гамбургер") */
+        .menu-toggle-button {
+             display: none; /* Скрыта по умолчанию на больших экранах */
+             background: none;
+             border: none;
+             color: var(--text-color-light);
+             font-size: 2em;
+             cursor: pointer;
+             padding: 5px;
+             transition: color 0.3s ease;
+             margin-left: 20px;
+             outline: none;
+             z-index: 1001; /* Над меню */
+        }
+         .menu-toggle-button:hover {
+             color: var(--primary-color-light);
+         }
+
+
+        /* ============================================= */
+        /* ОБЩИЕ СТИЛИ СЕКЦИЙ                           */
+        /* ============================================= */
+        .section {
+            padding: 100px 0; /* Больше отступ сверху и снизу */
+            opacity: 0; /* Изначально скрыты для анимации */
+            transform: translateY(80px); /* Начальное положение для анимации */
+            animation: fadeInSection 1.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; /* Более плавный переход */
+            animation-delay: var(--animation-delay, 0s); /* Задержка анимации */
+             position: relative;
+             z-index: 1; /* Располагаем над фоновыми элементами body */
+        }
+
+        /* Задержки для анимации появления секций */
+        #hero { animation-delay: 0.1s; }
+        #support-words { animation-delay: 0.6s; }
+        #music { animation-delay: 1.1s; }
+        #gallery { animation-delay: 1.6s; }
+        #wellbeing { animation-delay: 2.1s; }
+        #motivation { animation-delay: 2.6s; }
+        #therapy-tools { animation-delay: 3.1s; }
+
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif; /* Шрифт для заголовков секций */
+            font-size: 4em; /* Размер заголовка */
+            font-weight: 800; /* Жирность */
+            color: var(--secondary-color-light); /* Цвет */
+            text-align: center; /* Выравнивание по центру */
+            margin-bottom: 40px; /* Отступ снизу */
+            position: relative; /* Для позиционирования линии */
+            padding-bottom: 30px; /* Отступ для линии */
+            text-shadow: 3px 3px 8px var(--section-title-shadow-light); /* Тень для текста */
+        }
+         .section-title i {
+             margin-right: 20px; /* Отступ справа от иконки */
+             color: var(--primary-color-light); /* Цвет иконки */
+             font-size: 0.9em; /* Размер иконки относительно текста заголовка */
+         }
+        /* Линия под заголовком секции */
+        .section-title::after {
+            content: '';
+            width: 160px; /* Ширина линии */
+            height: 8px; /* Толщина линии */
+            background-color: var(--primary-color-light); /* Цвет линии */
+            border-radius: 4px; /* Скругление углов */
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%); /* Центрирование */
+        }
+
+        .section-subtitle {
+            font-family: 'Open Sans', sans-serif; /* Шрифт для подзаголовка */
+            text-align: center; /* Выравнивание по центру */
+            font-size: 1.5em; /* Размер шрифта */
+            color: var(--text-color-light); /* Цвет текста */
+            opacity: 0.98; /* Почти без прозрачности */
+            margin-bottom: 90px; /* Большой отступ снизу */
+            max-width: 900px; /* Максимальная ширина */
+            margin-left: auto; /* Центрирование блока */
+            margin-right: auto;
+             line-height: 1.7;
+        }
+
+        /* Анимация появления секций */
+        @keyframes fadeInSection {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============================================= */
+        /* СТИЛИ КАРТОЧЕК (CARDS)                       */
+        /* ============================================= */
+        .card {
+            background-color: var(--card-bg-light); /* Фон карточки (стекло) */
+            border: 1px solid var(--glass-border-light); /* Граница карточки */
+            border-radius: 25px; /* Скругление углов */
+            padding: 40px; /* Внутренние отступы */
+            box-shadow: var(--shadow-light); /* Тень */
+            transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.6s cubic-bezier(0.25, 0.8, 0.25, 1); /* Плавные и выразительные переходы */
+            backdrop-filter: blur(18px); /* Эффект размытия */
+            -webkit-backdrop-filter: blur(18px);
+            position: relative;
+            overflow: hidden; /* Скрываем содержимое за пределами рамки */
+            z-index: 1; /* Выше фоновых элементов */
+        }
+         /* Декоративный паттерн на фоне карточек */
+        .card::before {
+             content: '';
+             position: absolute;
+             top: 0;
+             left: 0;
+             width: 100%;
+             height: 100%;
+             /* Паттерн в виде SVG Data URL */
+             background: url("data:image/svg+xml,%3Csvg width='8' height='8' viewBox='0 0 8 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.15' fill-rule='evenodd'%3E%3Cpath d='M0 0h4v4H0zm4 0h4v4H4zm0 4h4v4H4zm0 0H0v4h4z'/%3E%3C/g%3E%3C/svg%3E");
+             z-index: -1; /* Под контентом карточки */
+             opacity: 0.8; /* Прозрачность паттерна */
+             transition: opacity 0.4s ease; /* Плавный переход при наведении */
+        }
+        /* Паттерн для темной темы */
+        body.dark-theme .card::before {
+            background: url("data:image/svg+xml,%3Csvg width='8' height='8' viewBox='0 0 8 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.15' fill-rule='evenodd'%3E%3Cpath d='M0 0h4v4H0zm4 0h4v4H4zm0 4h4v4H4zm0 0H0v4h4z'/%3E%3C/g%3E%3C/svg%3E");
+             opacity: 0.7;
+        }
+         /* Паттерн становится менее прозрачным при наведении на карточку */
+         .card:hover::before {
+             opacity: 1;
+         }
+
+        /* Эффект при наведении на карточку */
+        .card:hover {
+            transform: translateY(-15px) scale(1.03); /* Сдвиг вверх и небольшое увеличение */
+            box-shadow: 0 35px 90px rgba(142, 36, 170, 0.5); /* Более выраженная тень */
+        }
+
+        /* Заголовки внутри карточек */
+        .card-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8em; /* Размер шрифта */
+            font-weight: 700; /* Жирность */
+            color: var(--secondary-color-light); /* Цвет */
+            margin-bottom: 20px; /* Отступ снизу */
+            position: relative;
+            padding-left: 45px; /* Отступ для иконки */
+            display: flex; /* Flexbox для выравнивания иконки и текста */
+            align-items: center;
+        }
+         /* Иконка в заголовке карточки */
+         .card-title i {
+             position: absolute;
+             left: 0;
+             top: 50%;
+             transform: translateY(-50%);
+             color: var(--primary-color-light); /* Цвет иконки */
+             font-size: 1em; /* Размер иконки относительно текста */
+             transition: transform 0.4s ease, color 0.3s ease; /* Плавные переходы */
+         }
+         /* Эффект при наведении на карточку для иконки в заголовке */
+         .card:hover .card-title i {
+             transform: translateY(-50%) rotate(10deg) scale(1.1); /* Поворот и увеличение */
+              color: var(--primary-color-light); /* Цвет остается акцентным */
+         }
+
+        /* Текст внутри карточек */
+        .card-text {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.05em; /* Размер шрифта */
+            line-height: 1.7; /* Межстрочный интервал */
+            opacity: 0.98; /* Прозрачность */
+            margin-bottom: 20px; /* Отступ снизу */
+        }
+
+        /* Основные иконки секций в карточках (если есть) */
+        .card-icon {
+            font-size: 4.5em; /* Размер иконки */
+            color: var(--primary-color-light); /* Цвет иконки */
+            margin-bottom: 25px; /* Отступ снизу */
+            display: block; /* Делаем блочным для центрирования */
+            text-align: center; /* Центрирование */
+            transition: transform 0.5s ease; /* Плавный переход */
+        }
+         /* Эффект при наведении на карточку для основной иконки */
+         .card:hover .card-icon {
+             transform: rotate(15deg) scale(1.2); /* Поворот и увеличение */
+         }
+
+
+        /* ============================================= */
+        /* СТИЛИ КНОПОК (BUTTONS)                       */
+        /* ============================================= */
+        .btn {
+            display: inline-block; /* Строчно-блочный элемент */
+            padding: 20px 50px; /* Внутренние отступы */
+            font-size: 1.25em; /* Размер шрифта */
+             font-family: 'Montserrat', sans-serif; /* Шрифт текста кнопки */
+            font-weight: 700; /* Жирность */
+            color: var(--button-text-light); /* Цвет текста */
+            background: var(--button-bg-light); /* Фон кнопки (градиент) */
+            border: none; /* Без рамки */
+            border-radius: 50px; /* Сильное скругление (форма таблетки) */
+            text-decoration: none; /* Без подчеркивания */
+            text-align: center; /* Выравнивание текста по центру */
+            cursor: pointer; /* Курсор-указатель */
+            box-shadow: 0 15px 40px rgba(233, 30, 99, 0.7); /* Выраженная тень */
+            transition: all 0.7s cubic-bezier(0.25, 0.8, 0.25, 1); /* Более плавный и выразительный переход */
+            position: relative;
+            overflow: hidden; /* Скрываем содержимое за пределами кнопки */
+            z-index: 1; /* Выше других элементов */
+             outline: none; /* Убираем стандартный контур при фокусе */
+        }
+        .btn i {
+            margin-left: 15px; /* Отступ справа от иконки */
+            transition: transform 0.4s ease; /* Плавный переход */
+        }
+        /* Сдвиг иконки при наведении на кнопку */
+        .btn:hover i {
+            transform: translateX(10px);
+        }
+        /* Эффект при наведении на кнопку */
+        .btn:hover {
+            transform: translateY(-10px) scale(1.07); /* Сдвиг вверх и увеличение */
+            box-shadow: 0 25px 60px rgba(233, 30, 99, 0.8); /* Более выраженная тень */
+        }
+        /* Эффект при нажатии на кнопку */
+        .btn:active {
+            transform: translateY(0px) scale(0.95); /* Сжатие */
+            box-shadow: 0 8px 20px rgba(233, 30, 99, 0.6);
+        }
+        /* Эффект сияния для кнопки при наведении */
+        .btn::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: rgba(255, 255, 255, 0.5); /* Цвет сияния */
+            transform: translate(-50%, -50%) rotate(45deg); /* Поворот для диагонального эффекта */
+            transition: width 0.8s ease, height 0.8s ease; /* Плавное появление */
+            z-index: 0;
+            opacity: 0;
+        }
+        /* Анимация сияния при наведении */
+        .btn:hover::before {
+            opacity: 1;
+            width: 0;
+            height: 0;
+        }
+
+
+        /* ============================================= */
+        /* СЕКЦИЯ: ГЕРОЙ (HERO SECTION)                  */
+        /* ============================================= */
+        .hero-section {
+            text-align: center; /* Выравнивание контента по центру */
+            padding: 160px 0; /* Большие внутренние отступы */
+            background: linear-gradient(135deg, var(--secondary-color-light) 0%, var(--primary-color-light) 100%); /* Градиентный фон */
+            color: #fff; /* Цвет текста */
+            border-radius: 0 0 120px 120px; /* Сильное скругление нижних углов */
+            margin-bottom: 80px; /* Отступ снизу */
+            position: relative;
+            overflow: hidden; /* Скрываем декоративные элементы за пределами секции */
+             box-shadow: var(--shadow-light); /* Тень */
+        }
+         /* Декоративные круги на фоне герой-секции */
+        .hero-section::before, .hero-section::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.25); /* Полупрозрачный цвет */
+            z-index: 0; /* Под контентом */
+             filter: blur(80px); /* Сильное размытие */
+        }
+        .hero-section::before {
+            width: 400px; /* Размер */
+            height: 400px; /* Размер */
+            top: 20%; /* Позиция */
+            left: 12%; /* Позиция */
+            animation: float 16s ease-in-out infinite alternate; /* Анимация */
+        }
+         .hero-section::after {
+            width: 500px; /* Размер */
+            height: 500px; /* Размер */
+            bottom: 20%; /* Позиция */
+            right: 12%; /* Позиция */
+            animation: float 17s ease-in-out infinite alternate reverse; /* Анимация в обратную сторону */
+        }
+
+        .hero-section .container {
+             position: relative;
+             z-index: 1; /* Контент над декорациями */
+        }
+
+        /* Заголовок в герой-секции */
+        .hero-section .section-title {
+            color: #fff; /* Белый цвет текста */
+            font-family: 'Pacifico', cursive; /* Специальный шрифт */
+            font-size: 6.5em; /* Размер шрифта */
+            text-shadow: 6px 6px 15px rgba(0,0,0,0.7); /* Выраженная тень */
+             margin-bottom: 35px; /* Отступ снизу */
+        }
+        /* Линия под заголовком в герой-секции */
+        .hero-section .section-title::after{
+            background-color: #fff; /* Белая линия */
+             height: 8px; /* Толщина */
+             width: 220px; /* Ширина */
+        }
+        /* Подзаголовок в герой-секции */
+        .hero-section .section-subtitle {
+            font-family: 'Open Sans', sans-serif;
+            color: rgba(255,255,255,1); /* Полностью непрозрачный */
+            font-size: 1.8em; /* Размер шрифта */
+            text-shadow: 3px 3px 10px rgba(0,0,0,0.6); /* Тень */
+             margin-bottom: 80px; /* Большой отступ снизу */
+        }
+        /* Плейсхолдер для изображения (или сама картинка) */
+        .hero-image-placeholder {
+            width: 350px; /* Размер */
+            height: 350px; /* Размер */
+            border-radius: 50%; /* Круглая форма */
+            background-color: rgba(255,255,255,0.4); /* Фон */
+            margin: 0 auto 70px auto; /* Отступы и центрирование */
+            border: 12px solid rgba(255,255,255,0.7); /* Рамка */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8em; /* Размер иконки */
+            color: var(--secondary-color-light); /* Цвет иконки */
+             box-shadow: 0 10px 30px rgba(0,0,0,0.4); /* Тень */
+             transition: transform 1s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Выразительный переход */
+            /* background-image: url('path-to-amina.jpg'); */
+            /* background-size: cover; */
+            /* background-position: center; */
+        }
+         /* Эффект при наведении на плейсхолдер изображения */
+         .hero-image-placeholder:hover {
+             transform: scale(1.1) rotate(10deg); /* Увеличение и поворот */
+         }
+
+
+        /* ============================================= */
+        /* СЕКЦИЯ: СЛОВА ПОДДЕРЖКИ                      */
+        /* ============================================= */
+        #support-words .grid {
+            display: grid; /* Сетка */
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* Адаптивные колонки */
+            gap: 40px; /* Отступ между элементами сетки */
+            margin-bottom: 60px; /* Отступ снизу */
+        }
+        /* Карточка цитаты поддержки */
+        .support-quote-card {
+            background-color: var(--card-bg-light); /* Фон */
+            border-left: 10px solid var(--primary-color-light); /* Левая граница (акцент) */
+            padding: 30px; /* Внутренние отступы */
+            border-radius: 20px; /* Скругление углов */
+            box-shadow: var(--shadow-light); /* Тень */
+            font-style: italic; /* Курсив */
+            transition: transform 0.5s ease, border-color 0.5s ease; /* Плавные переходы */
+        }
+        /* Эффект при наведении на карточку цитаты */
+        .support-quote-card:hover {
+            transform: translateX(15px); /* Сдвиг вправо */
+             border-left-color: var(--secondary-color-light); /* Изменение цвета границы */
+        }
+        .support-quote-card p {
+            margin-bottom: 18px; /* Отступ снизу */
+            font-size: 1.15em; /* Размер шрифта */
+            line-height: 1.7; /* Межстрочный интервал */
+        }
+        .support-quote-card .author {
+            text-align: right; /* Выравнивание автора справа */
+            font-weight: bold; /* Жирность */
+            color: var(--secondary-color-light); /* Цвет */
+            font-style: normal; /* Обычный стиль текста */
+            font-size: 1.05em; /* Размер шрифта */
+            opacity: 0.95; /* Прозрачность */
+        }
+        /* Форма отправки сообщения */
+        .message-form textarea {
+            width: 100%; /* Полная ширина */
+            padding: 20px; /* Внутренние отступы */
+            border-radius: 15px; /* Скругление углов */
+            border: 1px solid var(--glass-border-light); /* Граница */
+            background-color: rgba(255,255,255,0.85); /* Фон с прозрачностью */
+            color: var(--text-color-light); /* Цвет текста */
+            font-family: 'Open Sans', sans-serif; /* Шрифт */
+            font-size: 1.1em; /* Размер шрифта */
+            min-height: 200px; /* Минимальная высота */
+            margin-bottom: 25px; /* Отступ снизу */
+            box-shadow: inset 0 4px 10px rgba(0,0,0,0.2); /* Внутренняя тень */
+            transition: border-color 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease; /* Плавные переходы */
+            resize: vertical; /* Разрешить изменение размера только по вертикали */
+             outline: none;
+        }
+        /* Стили текстового поля в темной теме */
+        body.dark-theme .message-form textarea {
+             background-color: rgba(0,0,0,0.6);
+             color: var(--text-color-dark);
+        }
+        /* Стили текстового поля при фокусе */
+        .message-form textarea:focus {
+            border-color: var(--primary-color-light);
+            box-shadow: 0 0 0 8px rgba(233, 30, 99, 0.5); /* Выраженная тень фокуса */
+            background-color: rgba(255,255,255,0.98); /* Менее прозрачный фон при фокусе */
+        }
+         body.dark-theme .message-form textarea:focus {
+             background-color: rgba(50, 50, 50, 0.98);
+         }
+
+        .message-form .form-footer {
+            display: flex; /* Flexbox */
+            justify-content: space-between; /* Распределяем элементы */
+            align-items: center; /* Выравнивание по вертикали */
+            flex-wrap: wrap; /* Перенос элементов на новую строку */
+        }
+         .message-form .form-footer .btn {
+             margin-top: 15px; /* Отступ сверху для кнопки */
+             width: auto; /* Авто ширина */
+         }
+        .message-form .char-counter {
+            font-size: 1em; /* Размер шрифта */
+            opacity: 0.85; /* Прозрачность */
+            margin-top: 15px; /* Отступ сверху */
+            transition: color 0.3s ease; /* Плавный переход цвета */
+        }
+
+        /* ============================================= */
+        /* СЕКЦИЯ: МУЗЫКА И ПЛЕЙЛИСТЫ                   */
+        /* ============================================= */
+        #music .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* Адаптивные колонки */
+            gap: 40px; /* Отступ между элементами сетки */
+        }
+        .playlist-card .card-icon {
+             font-size: 4em; /* Размер иконки */
+        }
+        .playlist-card .btn {
+            margin-top: 25px; /* Отступ сверху */
+        }
+        /* Плейсхолдер для встраиваемого плеера */
+        .embed-player-placeholder {
+            width: 100%; /* Полная ширина */
+            height: 280px; /* Высота */
+            background-color: rgba(0,0,0,0.25); /* Фон */
+            border-radius: 15px; /* Скругление углов */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary-color-light); /* Цвет */
+            font-size: 3em; /* Размер иконки */
+            margin-bottom: 25px; /* Отступ снизу */
+             box-shadow: inset 0 0 20px rgba(0,0,0,0.3); /* Внутренняя тень */
+        }
+         body.dark-theme .embed-player-placeholder {
+             background-color: rgba(255,255,255,0.18);
+         }
+         .embed-player-placeholder i {
+             margin-right: 15px; /* Отступ справа от иконки */
+         }
+
+
+        /* ============================================= */
+        /* СЕКЦИЯ: ФОТОГАЛЕРЕЯ                            */
+        /* ============================================= */
+        #gallery {
+             padding-bottom: 90px; /* Увеличим нижний отступ */
+        }
+        .photo-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* Адаптивные колонки */
+            gap: 25px; /* Отступ между элементами сетки */
+            margin-bottom: 0; /* Убираем нижний отступ сетки */
+        }
+        /* Элемент фото в галерее */
+        .photo-item img {
+            width: 100%; /* Полная ширина */
+            height: 320px; /* Высота */
+            object-fit: cover; /* Обрезка фото для заполнения */
+            border-radius: 15px; /* Скругление углов */
+            box-shadow: var(--shadow-light); /* Тень */
+            transition: transform 0.5s ease, opacity 0.5s ease, box-shadow 0.5s ease; /* Плавные переходы */
+            cursor: pointer; /* Курсор-указатель */
+        }
+        /* Эффект при наведении на фото */
+        .photo-item img:hover {
+            transform: scale(1.05) rotate(2deg); /* Увеличение и поворот */
+            opacity: 0.95; /* Меньшая прозрачность */
+            box-shadow: 0 25px 60px rgba(142, 36, 170, 0.45); /* Более выраженная тень */
+        }
+        /* Стили для модального окна (попап для фото) */
+        .modal {
+            display: none; /* Скрыто по умолчанию */
+            position: fixed; /* Фиксированное положение */
+            z-index: 2000; /* Выше всего */
+            left: 0;
+            top: 0;
+            width: 100%; /* Полная ширина */
+            height: 100%; /* Полная высота */
+            overflow: auto; /* Прокрутка, если фото большое */
+            background-color: rgba(0,0,0,0.98); /* Почти непрозрачный темный фон */
+            align-items: center; /* Выравнивание по центру по вертикали */
+            justify-content: center; /* Выравнивание по центру по горизонтали */
+             padding: 20px; /* Внутренние отступы */
+        }
+        /* Контент модального окна (само фото) */
+        .modal-content {
+            margin: auto; /* Центрирование */
+            display: block; /* Блочный элемент */
+            max-width: 90%; /* Максимальная ширина */
+            max-height: 90%; /* Максимальная высота */
+            border-radius: 10px; /* Скругление углов */
+             box-shadow: 0 5px 30px rgba(0,0,0,0.8); /* Тень для фото */
+        }
+        /* Подпись к фото в модальном окне */
+        .modal-caption {
+            text-align: center; /* Выравнивание по центру */
+            color: #fff; /* Белый текст */
+            padding: 20px 0; /* Внутренние отступы */
+            font-size: 1.4em; /* Размер шрифта */
+            max-width: 80%; /* Максимальная ширина */
+            margin: 0 auto; /* Центрирование блока */
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Тень для текста */
+        }
+        /* Кнопка закрытия модального окна */
+        .close-modal {
+            position: absolute; /* Абсолютное позиционирование */
+            top: 20px; /* Позиция */
+            right: 30px; /* Позиция */
+            color: #fff; /* Цвет */
+            font-size: 50px; /* Размер */
+            font-weight: bold;
+            transition: 0.4s ease; /* Плавный переход */
+            cursor: pointer; /* Курсор-указатель */
+             text-shadow: 2px 2px 5px rgba(0,0,0,0.5); /* Тень для иконки */
+        }
+        /* Эффект при наведении на кнопку закрытия */
+        .close-modal:hover, .close-modal:focus {
+            color: var(--primary-color-light); /* Цвет при наведении */
+            text-decoration: none;
+            opacity: 1;
+            transform: rotate(180deg) scale(1.1); /* Поворот и увеличение */
+        }
+
+
+        /* ============================================= */
+        /* НОВАЯ СЕКЦИЯ: ЗАБОТА О СЕБЕ (WELLBEING)       */
+        /* ============================================= */
+        #wellbeing .grid {
+             display: grid;
+             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+             gap: 35px;
+        }
+         .wellbeing-item .card-title i {
+             color: var(--secondary-color-light); /* Иконки в заголовках под цвет secondary */
+         }
+         .wellbeing-item .btn {
+             margin-top: 25px;
+         }
+
+
+        /* ============================================= */
+        /* СЕКЦИЯ: АРТ И МОТИВАЦИЯ                      */
+        /* ============================================= */
+        #motivation .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 35px;
+        }
+        .motivation-quote {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.5em; /* Размер шрифта */
+            padding: 30px; /* Внутренние отступы */
+            border-left: 8px solid var(--primary-color-light); /* Левая граница */
+            background-color: rgba(255,255,255,0.2); /* Фон */
+            font-style: italic; /* Курсив */
+            margin-bottom: 20px;
+            border-radius: 0 20px 20px 0; /* Скругление справа */
+             box-shadow: var(--shadow-light); /* Тень */
+             position: relative;
+        }
+         /* Фон цитаты в темной теме */
+         body.dark-theme .motivation-quote {
+             background-color: rgba(0,0,0,0.4);
+         }
+
+        /* Декоративная кавычка перед цитатой */
+        .motivation-quote::before {
+            content: "\201C"; /* Символ левой двойной кавычки */
+            font-family: Georgia, serif; /* Классический шрифт для кавычек */
+            font-size: 5em; /* Размер */
+            color: var(--primary-color-light); /* Цвет */
+            position: absolute;
+            top: 15px; /* Позиция */
+            left: 20px; /* Позиция */
+            opacity: 0.4; /* Прозрачность */
+            line-height: 1; /* Межстрочный интервал */
+        }
+
+        /* Плейсхолдер для вдохновляющего изображения */
+        .motivation-image-placeholder {
+            width: 100%;
+            height: 280px; /* Увеличена высота */
+            background-color: var(--glass-border-light);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary-color-light);
+            font-size: 2.2em; /* Увеличен размер иконки */
+            margin-bottom: 20px;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.25); /* Внутренняя тень */
+        }
+         /* Фон плейсхолдера в темной теме */
+         body.dark-theme .motivation-image-placeholder {
+             background-color: rgba(255,255,255,0.2);
+         }
+         .motivation-image-placeholder i {
+             margin-right: 15px;
+         }
+
+        /* ============================================= */
+        /* СЕКЦИЯ: ИНСТРУМЕНТЫ ПОДДЕРЖКИ          */
+        /* ============================================= */
+        #therapy-tools .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
+        }
+        .tool-card {
+            text-align: center;
+             padding-bottom: 20px;
+        }
+        /* Основная иконка в карточке инструмента */
+        .tool-card .card-icon {
+            font-size: 4.5em;
+            margin-bottom: 25px;
+             color: var(--secondary-color-light); /* Цвет иконки */
+        }
+         /* Заголовок в карточке инструмента */
+         .tool-card .card-title {
+             justify-content: center; /* Центрирование */
+             padding-left: 0; /* Убираем отступ слева */
+         }
+         /* Иконка в заголовке карточки инструмента */
+         .tool-card .card-title i {
+             position: static; /* Обычное позиционирование */
+             transform: none; /* Убираем трансформации */
+             margin-right: 10px; /* Отступ справа */
+             color: var(--primary-color-light); /* Цвет иконки */
+         }
+        .tool-card .btn {
+            width: 90%; /* Ширина кнопки */
+            margin-top: 25px; /* Отступ сверху */
+        }
+
+
+        /* ============================================= */
+        /* ФУТЕР (FOOTER)                               */
+        /* ============================================= */
+        .site-footer {
+            background-color: var(--footer-bg-light); /* Фон футера */
+            color: var(--text-color-light); /* Цвет текста */
+            text-align: center; /* Выравнивание по центру */
+            padding: 50px 0; /* Внутренние отступы */
+            margin-top: 80px; /* Отступ сверху */
+            border-top: 1px solid var(--glass-border-light); /* Верхняя граница */
+            font-size: 1.05em; /* Размер шрифта */
+            backdrop-filter: blur(15px); /* Эффект размытия */
+             -webkit-backdrop-filter: blur(15px);
+        }
+        .site-footer p {
+            margin-bottom: 15px; /* Отступ снизу */
+            line-height: 1.7; /* Межстрочный интервал */
+        }
+        /* Ссылки в футере */
+        .footer-links a {
+            color: var(--primary-color-light); /* Цвет ссылок */
+            text-decoration: none; /* Без подчеркивания */
+            margin: 0 15px; /* Отступ между ссылками */
+            transition: color 0.3s ease, text-decoration 0.3s ease; /* Плавные переходы */
+        }
+        .footer-links a:hover {
+            color: var(--secondary-color-light); /* Цвет при наведении */
+            text-decoration: underline; /* Подчеркивание при наведении */
+        }
+         /* Текст копирайта */
+         .site-footer .copyright {
+             font-size: 0.9em; /* Размер шрифта */
+             opacity: 0.85; /* Прозрачность */
+             margin-top: 25px; /* Отступ сверху */
+         }
+
+
+        /* ============================================= */
+        /* АДАПТИВНОСТЬ (MEDIA QUERIES)                 */
+        /* ============================================= */
+
+        /* Стили для планшетов и экранов поменьше */
+        @media (max-width: 992px) {
+             body::before { width: 300px; height: 300px; top: -80px; left: -80px; filter: blur(120px);}
+             body::after { width: 400px; height: 400px; bottom: -80px; right: -80px; filter: blur(120px);}
+             @keyframes float { /* Адаптация анимации float */
+                 0% { transform: translateY(0px) translateX(0px); }
+                 50% { transform: translateY(40px) translateX(20px); }
+                 100% { transform: translateY(0px) translateX(0px); }
+             }
+
+            .section { padding: 80px 0; transform: translateY(60px);}
+            .section-title { font-size: 3.5em; margin-bottom: 30px; padding-bottom: 25px;}
+             .section-title i { font-size: 0.9em; margin-right: 15px;}
+             .section-title::after { width: 140px; height: 6px;}
+            .hero-section .section-title { font-size: 4.5em; margin-bottom: 25px;}
+             .hero-section .section-title::after { width: 180px;}
+            .hero-image-placeholder { width: 280px; height: 280px; font-size: 7em; margin-bottom: 50px; border: 10px solid rgba(255,255,255,0.6);}
+            .section-subtitle { font-size: 1.4em; margin-bottom: 60px;}
+             .main-nav ul li { margin-left: 35px;}
+             .main-nav ul li a { padding: 8px 0;}
+
+            #support-words .grid, #music .grid, #wellbeing .grid, #motivation .grid, #therapy-tools .grid {
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+                gap: 35px;
+            }
+             .card { padding: 35px; border-radius: 20px;}
+             .card-title { font-size: 1.7em; padding-left: 40px; margin-bottom: 18px;}
+             .card-title i { font-size: 1em;}
+             .card-icon { font-size: 4em; margin-bottom: 20px;}
+             .card:hover .card-icon { transform: rotate(15deg) scale(1.15); }
+
+             .btn { padding: 18px 40px; font-size: 1.15em; box-shadow: 0 12px 35px rgba(233, 30, 99, 0.6);}
+             .btn:hover { transform: translateY(-8px) scale(1.05);}
+             .btn:hover i { transform: translateX(10px); }
+
+            .message-form textarea { padding: 18px; min-height: 180px; margin-bottom: 20px;}
+
+            #gallery { padding-bottom: 70px;}
+             .photo-gallery-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;}
+             .photo-item img { height: 280px;}
+             .modal-content { max-width: 95%; max-height: 90%;}
+             .close-modal { top: 15px; right: 25px; font-size: 45px;}
+
+             .motivation-quote { font-size: 1.4em; padding: 25px; border-left-width: 6px; border-radius: 0 15px 15px 0;}
+              .motivation-quote::before { font-size: 4.5em; top: 10px; left: 15px;}
+             .motivation-image-placeholder { height: 250px; font-size: 2em;}
+             .tool-card .card-icon { font-size: 4em;}
+
+             .site-footer { padding: 40px 0;}
+             .footer-links a { margin: 0 12px;}
+             .site-footer .copyright { margin-top: 20px;}
+        }
+
+
+        /* Стили для мобильных телефонов */
+        @media (max-width: 768px) {
+             body { padding-top: 70px; } /* Уменьшаем отступ сверху */
+             body::before { width: 200px; height: 200px; top: -30px; left: -30px; filter: blur(80px);}
+             body::after { width: 250px; height: 250px; bottom: -30px; right: -30px; filter: blur(80px);}
+             @keyframes float {
+                 0% { transform: translateY(0px) translateX(0px); }
+                 50% { transform: translateY(20px) translateX(10px); }
+                 100% { transform: translateY(0px) translateX(0px); }
+             }
+
+             /* Адаптация шапки и меню */
+             .site-header .container { flex-direction: row; justify-content: space-between; align-items: center;} /* Возвращаем горизонтальное расположение */
+             .logo { margin-bottom: 0; font-size: 1.8em;}
+             .main-nav {
+                 position: fixed; /* Фиксируем меню */
+                 top: 70px; /* Под шапкой */
+                 left: 0;
+                 width: 100%;
+                 height: calc(100vh - 70px); /* Высота до низа экрана */
+                 background-color: var(--header-bg-light); /* Фон меню */
+                 backdrop-filter: blur(20px);
+                 -webkit-backdrop-filter: blur(20px);
+                 transform: translateX(-100%); /* Изначально скрываем меню за экраном */
+                 transition: transform 0.4s ease-in-out; /* Плавное появление/скрытие */
+                 z-index: 999; /* Под шапкой, но над контентом */
+                 padding: 20px;
+                 display: flex;
+                 flex-direction: column;
+                 align-items: center; /* Центрируем пункты */
+                 overflow-y: auto; /* Прокрутка, если пунктов много */
+             }
+             .main-nav.is-open {
+                 transform: translateX(0%); /* Показываем меню */
+             }
+             .main-nav ul { flex-direction: column; width: 100%;}
+             .main-nav ul li { margin-left: 0; width: 100%; margin-bottom: 15px;} /* Отступ между пунктами */
+             .main-nav ul li:last-child { margin-bottom: 0;}
+             .main-nav ul li a { display: block; padding: 15px; text-align: center; border-radius: 8px; transform: none !important; border: 1px solid transparent; transition: background-color 0.3s ease, border-color 0.3s ease;}
+             .main-nav ul li a::before { content: none; } /* Убираем подчеркивание на мобильных */
+             .main-nav ul li a:hover, .main-nav ul li a.active { background-color: rgba(142, 36, 170, 0.2); border-color: var(--glass-border-light); } /* Фон активной/ховера ссылки */
+
+             .theme-toggle-button { position: static; margin-left: auto; margin-right: 10px; font-size: 1.4em;} /* Перемещаем кнопку темы */
+             .menu-toggle-button { display: block; /* Показываем кнопку "гамбургера" */ }
+
+            .section { padding: 50px 0; transform: translateY(30px);}
+            .section-title { font-size: 2.8em; margin-bottom: 20px; padding-bottom: 15px;}
+             .section-title i { font-size: 1em; margin-right: 8px;}
+            .section-title::after { width: 100px; height: 4px;}
+            .hero-section .section-title { font-size: 3.5em; margin-bottom: 15px;}
+             .hero-section .section-title::after { width: 120px;}
+            .hero-image-placeholder { width: 180px; height: 180px; font-size: 4.5em; margin-bottom: 30px; border: 6px solid rgba(255,255,255,0.5);}
+            .section-subtitle { font-size: 1.1em; margin-bottom: 40px;}
+
+            #support-words .grid, #music .grid, #wellbeing .grid, #motivation .grid, #therapy-tools .grid {
+                grid-template-columns: 1fr; /* Одна колонка на мобильных */
+                gap: 20px;
+            }
+            .card { padding: 20px; border-radius: 15px;}
+             .card-title { font-size: 1.3em; padding-left: 25px; margin-bottom: 12px;}
+             .card-title i { font-size: 1em;}
+             .card-icon { font-size: 3em; margin-bottom: 15px;}
+             .card:hover .card-icon { transform: rotate(10deg) scale(1.05); }
+
+            .btn { padding: 12px 25px; font-size: 1em; box-shadow: 0 8px 20px rgba(233, 30, 99, 0.5);}
+            .btn:hover { transform: translateY(-4px) scale(1.03);}
+            .btn:hover i { transform: translateX(6px); }
+
+            .message-form textarea { padding: 12px; min-height: 100px; margin-bottom: 15px;}
+            .message-form .btn { width: 100%; margin-top: 10px;}
+             .message-form .char-counter { margin-top: 8px;}
+
+            #gallery { padding-bottom: 50px;}
+             .photo-gallery-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px;}
+             .photo-item img { height: 120px;}
+             .modal-content { max-width: 98%; max-height: 95%;}
+             .modal-caption { font-size: 1.1em;}
+             .close-modal { top: 10px; right: 10px; font-size: 30px;}
+
+             .motivation-quote { font-size: 1em; padding: 15px; border-left-width: 4px; border-radius: 0 10px 10px 0;}
+              .motivation-quote::before { font-size: 2.8em; top: 5px; left: 5px;}
+             .motivation-image-placeholder { height: 180px; font-size: 1.5em;}
+             .tool-card .card-icon { font-size: 3.5em;}
+             .tool-card .btn { width: 100%;}
+
+             .site-footer { padding: 30px 0;}
+             .footer-links a { margin: 0 8px;}
+             .site-footer .copyright { margin-top: 15px;}
+        }
+
+         /* Стили для очень маленьких экранов */
+         @media (max-width: 480px) {
+             body { padding-top: 60px; }
+              body::before { width: 150px; height: 150px; top: -20px; left: -20px; filter: blur(60px);}
+              body::after { width: 200px; height: 200px; bottom: -20px; right: -20px; filter: blur(60px);}
+              .site-header { padding: 10px 0;}
+              .site-header .container { padding-left: 10px; padding-right: 10px;}
+              .container { padding: 20px 10px;}
+              .logo { font-size: 1.6em;}
+              .menu-toggle-button { font-size: 1.3em; margin-right: 5px;}
+              .theme-toggle-button { font-size: 1.2em; margin-right: 5px;}
+
+              .main-nav { top: 60px; height: calc(100vh - 60px); padding: 15px;}
+              .main-nav ul li { margin-bottom: 10px;}
+              .main-nav ul li a { padding: 12px; font-size: 0.9em;}
+
+              .section { padding: 30px 0; transform: translateY(20px);}
+              .section-title { font-size: 2.2em; margin-bottom: 15px; padding-bottom: 10px;}
+               .section-title i { font-size: 1em; margin-right: 6px;}
+              .section-title::after { width: 80px; height: 3px;}
+              .hero-section .section-title { font-size: 2.8em; margin-bottom: 10px;}
+               .hero-section .section-title::after { width: 100px;}
+              .hero-image-placeholder { width: 140px; height: 140px; font-size: 3.5em; margin-bottom: 20px; border: 5px solid rgba(255,255,255,0.5);}
+              .section-subtitle { font-size: 0.9em; margin-bottom: 30px;}
+
+              #support-words .grid, #music .grid, #wellbeing .grid, #motivation .grid, #therapy-tools .grid {
+                 gap: 15px;
+              }
+              .card { padding: 15px; border-radius: 10px;}
+               .card-title { font-size: 1.2em; padding-left: 20px; margin-bottom: 10px;}
+               .card-title i { font-size: 1em;}
+               .card-icon { font-size: 2.8em; margin-bottom: 15px;}
+
+              .btn { padding: 10px 20px; font-size: 0.9em; box-shadow: 0 6px 15px rgba(233, 30, 99, 0.5);}
+               .btn:hover { transform: translateY(-3px) scale(1.02);}
+               .btn:hover i { transform: translateX(5px); }
+
+              .message-form textarea { padding: 10px; min-height: 80px; margin-bottom: 10px; font-size: 0.9em;}
+              .message-form .form-footer { flex-direction: column; align-items: center;}
+              .message-form .btn { width: 100%; margin-top: 8px;}
+               .message-form .char-counter { margin-top: 6px; font-size: 0.8em;}
+
+
+              #gallery { padding-bottom: 40px;}
+              .photo-gallery-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 8px;}
+              .photo-item img { height: 100px;}
+              .modal-content { max-width: 100%; max-height: 95%;}
+              .modal-caption { font-size: 1em; padding: 10px 0;}
+              .close-modal { top: 5px; right: 5px; font-size: 25px;}
+
+              .motivation-quote { font-size: 0.95em; padding: 10px; border-left-width: 3px; border-radius: 0 8px 8px 0;}
+               .motivation-quote::before { font-size: 2.2em; top: 3px; left: 3px;}
+              .motivation-image-placeholder { height: 120px; font-size: 1.3em;}
+              .tool-card .card-icon { font-size: 3em;}
+              .tool-card .btn { width: 100%;}
+
+              .site-footer { padding: 20px 0;}
+              .footer-links a { margin: 0 5px; font-size: 0.9em;}
+              .site-footer .copyright { margin-top: 8px; font-size: 0.7em;}
+
+         }
+
+
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container">
+            <a href="#" class="logo"><i class="fas fa-heartbeat"></i> Для Амины</a>
+            <nav class="main-nav" id="mainNav">
+                <ul>
+                    <li><a href="#hero" class="active">Главная</a></li>
+                    <li><a href="#support-words">Поддержка</a></li>
+                    <li><a href="#music">Музыка</a></li>
+                    <li><a href="#gallery">Галерея</a></li>
+                    <li><a href="#wellbeing">Забота о Себе</a></li> <li><a href="#therapy-tools">Помощь</a></li>
+                </ul>
+            </nav>
+            <button class="theme-toggle-button" id="theme-toggle" title="Сменить тему">
+                <i class="fas fa-moon"></i> </button>
+            <button class="menu-toggle-button" id="menu-toggle" aria-label="Toggle menu">
+                 <i class="fas fa-bars"></i> </button>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="hero-section section">
+            <div class="container">
+                <div class="hero-image-placeholder">
+                    <i class="fas fa-spa"></i> </div>
+                <h1 class="section-title">Амина, ты невероятная!</h1>
+                <p class="section-subtitle">Этот сайт создан с любовью и теплом, чтобы напомнить тебе, какая ты сильная, прекрасная и как много людей тебя ценят. Ты не одна в этом, и все обязательно наладится. <i class="fas fa-hand-holding-heart"></i></p>
+                <a href="#support-words" class="btn">Слова поддержки для тебя <i class="fas fa-arrow-down"></i></a>
+            </div>
+        </section>
+
+        <section id="support-words" class="section">
+            <div class="container">
+                <h2 class="section-title"><i class="fas fa-comment-dots"></i> Море Теплых Слов</h2>
+                <p class="section-subtitle">Ты окружена любовью и поддержкой. Знай, что мы всегда рядом, чтобы подставить плечо и поделиться теплом.</p>
+                <div class="grid">
+                    <div class="support-quote-card">
+                        <p>"Аминочка, ты солнышко! Помни, что после самого сильного дождя всегда появляется радуга. Твоя радуга уже близко!"</p>
+                        <p class="author">- Твои Друзья</p>
+                    </div>
+                    <div class="support-quote-card">
+                        <p>"Не позволяй временным трудностям затмить твой внутренний свет. Ты способна на всё, просто верь в себя!"</p>
+                        <p class="author">- Анонимный доброжелатель</p>
+                    </div>
+                    <div class="support-quote-card">
+                        <p>"Каждый шторм делает нас сильнее. Ты выйдешь из этого еще более мудрой и прекрасной. Мы в тебя верим!"</p>
+                        <p class="author">- С любовью</p>
+                    </div>
+                     <div class="support-quote-card">
+                        <p>"Твоя стойкость вдохновляет. Даже в самые темные моменты помни, что ты несешь в себе невероятную силу."</p>
+                        <p class="author">- Кто-то, кто верит в тебя</p>
+                    </div>
+                     <div class="support-quote-card">
+                        <p>"Дай себе время. Позволь себе чувствовать. И знай, что даже маленькие шаги вперед - это уже огромный прогресс."</p>
+                        <p class="author">- Твоя поддержка</p>
+                    </div>
+                     <div class="support-quote-card">
+                        <p>"Обнимаем тебя крепко! Ты не одна в своих переживаниях. Мы здесь, чтобы выслушать и поддержать."</p>
+                        <p class="author">- Всегда рядом</p>
+                    </div>
+                </div>
+                <div class="card message-form-container" style="margin-top: 40px;">
+                     <h3 class="card-title" style="text-align:center;"><i class="fas fa-envelope-open-text"></i> Оставить свое теплое сообщение</h3>
+                    <form class="message-form" id="aminaMessageForm">
+                        <textarea name="message" placeholder="Напиши здесь свое теплое пожелание или слова поддержки... (можно анонимно)" maxlength="500" id="messageText"></textarea>
+                        <div class="form-footer">
+                            <span class="char-counter" id="charCounter">0/500</span>
+                            <button type="submit" class="btn">Отправить с любовью <i class="fas fa-paper-plane"></i></button>
+                        </div>
+                        <p style="text-align:center; font-size:0.8em; opacity:0.7; margin-top:15px;">Сообщения будут переданы Амине лично. **Примечание: Отправка и сохранение сообщений на сайте в этой версии не работают, так как это требует серверной части (бэкенда).**</p> </form>
+                </div>
+            </div>
+        </section>
+
+        <section id="music" class="section">
+            <div class="container">
+                <h2 class="section-title"><i class="fas fa-music"></i> Мелодии для Души и Сердца</h2>
+                <p class="section-subtitle">Музыка лечит, успокаивает и вдохновляет. Вот несколько плейлистов, созданных специально для тебя.</p>
+                <div class="grid">
+                    <div class="card playlist-card">
+                        <i class="fas fa-spa card-icon"></i>
+                        <h3 class="card-title"><i class="fab fa-spotify"></i> Плейлист "Спокойствие"</h3>
+                        <p class="card-text">Нежные мелодии для моментов, когда хочется расслабиться, помечтать и обрести гармонию.</p>
+                        <div class="embed-player-placeholder"><i class="fab fa-spotify"></i> Место для плеера</div> <a href="https://www.spotify.com/" class="btn" target="_blank" rel="noopener noreferrer">Открыть на Spotify <i class="fas fa-external-link-alt"></i></a> </div>
+                    <div class="card playlist-card">
+                        <i class="fas fa-bolt card-icon"></i>
+                        <h3 class="card-title"><i class="fab fa-youtube"></i> Плейлист "Энергия"</h3>
+                        <p class="card-text">Энергичные треки, чтобы поднять настроение, почувствовать свою силу и двигаться вперед!</p>
+                         <div class="embed-player-placeholder"><i class="fab fa-youtube"></i> Место для плеера</div> <a href="https://www.youtube.com/" class="btn" target="_blank" rel="noopener noreferrer">Открыть на YouTube <i class="fas fa-external-link-alt"></i></a> </div>
+                    <div class="card playlist-card">
+                        <i class="fas fa-moon card-icon"></i>
+                        <h3 class="card-title"><i class="fab fa-soundcloud"></i> Плейлист "Уют"</h3>
+                        <p class="card-text">Уютная музыка для размышлений, чтения книги или просто приятного вечера наедине с собой.</p>
+                         <div class="embed-player-placeholder"><i class="fab fa-soundcloud"></i> Место для плеера</div> <a href="https://soundcloud.com/" class="btn" target="_blank" rel="noopener noreferrer">Открыть на SoundCloud <i class="fas fa-external-link-alt"></i></a> </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="section">
+            <div class="container">
+                <h2 class="section-title"><i class="fas fa-camera-retro"></i> Галерея Счастливых Моментов</h2>
+                <p class="section-subtitle">"Ты — самое прекрасное, что было и есть." Взгляни на эти моменты и улыбнись, вспоминая, какая ты замечательная!</p>
+                <div class="photo-gallery-grid">
+                    <div class="photo-item"><img src="https://via.placeholder.com/300x300/FFC0CB/3A2E3F?text=Фото+1" alt="Фото Амины 1" data-caption="Счастливый день!"></div>
+                    <div class="photo-item"><img src="https://via.placeholder.com/300x300/D8BFD8/3A2E3F?text=Фото+2" alt="Фото Амины 2" data-caption="Улыбка, которая освещает мир"></div>
+                    <div class="photo-item"><img src="https://via.placeholder.com/300x300/FFB6C1/3A2E3F?text=Фото+3" alt="Фото Амины 3" data-caption="Моменты радости"></div>
+                    <div class="photo-item"><img src="https://via.placeholder.com/300x300/E6E6FA/3A2E3F?text=Фото+4" alt="Фото Амины 4" data-caption="Невероятные приключения"></div>
+                    <div class="photo-item"><img src="https://via.placeholder.com/300x300/FFE4E1/3A2E3F?text=Фото+5" alt="Фото Амины 5" data-caption="Дружба навсегда"></div>
+                    <div class="photo-item"><img src="https://via.placeholder.com/300x300/F08080/FFFFFF?text=Фото+6" alt="Фото Амины 6" data-caption="Сила и красота"></div>
+                     <div class="photo-item"><img src="https://via.placeholder.com/300x300/ADD8E6/3A2E3F?text=Фото+7" alt="Фото Амины 7" data-caption="Незабываемые моменты"></div>
+                    <div class="photo-item"><img src="https://via.placeholder.com/300x300/90EE90/3A2E3F?text=Фото+8" alt="Фото Амины 8" data-caption="Твоя красота"></div>
+                     <div class="photo-item"><img src="https://via.placeholder.com/300x300/BA68C8/FFFFFF?text=Фото+9" alt="Фото Амины 9" data-caption="Яркие краски жизни"></div>
+                     <div class="photo-item"><img src="https://via.placeholder.com/300x300/E57373/FFFFFF?text=Фото+10" alt="Фото Амины 10" data-caption="Светлые дни"></div>
+                </div>
+                 </div>
+        </section>
+
+        <div id="photoModal" class="modal">
+            <span class="close-modal" id="closePhotoModal">×</span> <img class="modal-content" id="modalImage" alt="Увеличенное фото"> <div id="modalCaption" class="modal-caption"></div> </div>
+
+
+        <section id="wellbeing" class="section"> <div class="container">
+                 <h2 class="section-title"><i class="fas fa-heart"></i> Пространство Заботы о Себе</h2>
+                 <p class="section-subtitle">Маленькие шаги к гармонии и внутреннему спокойствию каждый день. Здесь собраны идеи и инструменты для заботы о своем самочувствии.</p>
+                 <div class="grid">
+                     <div class="card wellbeing-item">
+                         <h3 class="card-title"><i class="fas fa-feather-alt"></i> Упражнение "Поток Сознания"</h3>
+                         <p class="card-text">Просто пиши все, что приходит в голову в течение 5-10 минут, не останавливаясь и не редактируя. Это помогает освободить разум от лишних мыслей.</p>
+                         <a href="https://www.google.com/search?q=%D1%83%D0%BF%D1%80%D0%B0%D0%B6%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5+%D0%BF%D0%BE%D1%82%D0%BE%D0%BA+%D1%81%D0%BE%D0%B7%D0%BD%D0%B0%D0%BD%D0%B8%D1%8F+%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0" class="btn" target="_blank" rel="noopener noreferrer">Попробовать сейчас <i class="fas fa-external-link-alt"></i></a> </div>
+                     <div class="card wellbeing-item">
+                          <h3 class="card-title"><i class="fas fa-leaf"></i> Момент Благодарности</h3>
+                         <p class="card-text">Найди 3 вещи, за которые ты благодарна сегодня. Это может быть что угодно - от чашки вкусного чая до улыбки прохожего. Запиши их.</p>
+                         <a href="https://www.google.com/search?q=%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0+%D0%B1%D0%BB%D0%B0%D0%B3%D0%BE%D0%B4%D0%B0%D1%80%D0%BD%D0%BE%D1%81%D1%82%D0%B8+%D0%B5%D0%B6%D0%B5%D0%B4%D0%BD%D0%B5%D0%B2%D0%BD%D0%B0%D1%8F" class="btn" target="_blank" rel="noopener noreferrer">Найти благодарности <i class="fas fa-external-link-alt"></i></a> </div>
+                      <div class="card wellbeing-item">
+                         <h3 class="card-title"><i class="fas fa-sun"></i> Мини-Перерыв "Солнечный Луч"</h3>
+                         <p class="card-text">Выйди на пару минут на солнце или просто посмотри в окно. Сделай несколько глубоких вдохов. Почувствуй тепло и свет.</p>
+                         <a href="https://www.google.com/search?q=%D0%BA%D0%B0%D0%BA+%D1%81%D0%B4%D0%B5%D0%BB%D0%B0%D1%82%D1%8C+%D0%B1%D1%8B%D1%81%D1%82%D1%80%D1%8B%D0%B9+%D0%BF%D0%B5%D1%80%D0%B5%D1%80%D1%8B%D0%B2+%D0%B4%D0%BB%D1%8F+%D1%80%D0%B0%D1%81%D1%81%D0%BB%D0%B0%D0%B1%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F+%D0%B8+%D0%B7%D0%B0%D1%80%D1%8F%D0%B4%D0%BA%D0%B8+%D1%8D%D0%BD%D0%B5%D1%80%D0%B3%D0%B8%D0%B8" class="btn" target="_blank" rel="noopener noreferrer">Сделать перерыв <i class="fas fa-external-link-alt"></i></a> </div>
+                 </div>
+             </div>
+        </section>
+
+        <section id="motivation" class="section"> <div class="container">
+                 <h2 class="section-title"><i class="fas fa-sparkles"></i> Арт, Цитаты и Вдохновение</h2>
+                 <p class="section-subtitle">Маленькие напоминания о твоей внутренней силе, красоте и безграничных возможностях.</p>
+                 <div class="grid">
+                    <div class="card">
+                        <h3 class="card-title"><i class="fas fa-quote-left"></i> Цитата Дня</h3>
+                        <p class="motivation-quote">"Самое большое приключение, которое ты можешь предпринять, – это жить жизнью своей мечты." - Опра Уинфри</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title"><i class="fas fa-palette"></i> Вдохновляющий Арт</h3>
+                        <div class="motivation-image-placeholder">
+                            <i class="fas fa-image"></i> Место для красивой картинки/мема
+                        </div>
+                        <p class="card-text" style="margin-top:15px;">Визуальная поддержка для твоего настроения.</p>
+                    </div>
+                     <div class="card">
+                        <h3 class="card-title"><i class="fas fa-lightbulb"></i> Мысль для Размышления</h3>
+                        <p class="card-text">Ты сильнее, чем думаешь, и способна на большее, чем представляешь. Каждый день – это новый шанс.</p>
+                    </div>
+                 </div>
+            </div>
+        </section>
+
+        <section id="therapy-tools" class="section"> <div class="container">
+                <h2 class="section-title"><i class="fas fa-tools"></i> Инструменты Поддержки</h2>
+                <p class="section-subtitle">Практики для ума и тела, которые помогут найти спокойствие, снять напряжение и позаботиться о себе. И места, где можно найти помощь.</p>
+                <div class="grid">
+                    <div class="card tool-card">
+                        <i class="fas fa-brain card-icon"></i>
+                        <h3 class="card-title"><i class="fas fa-headphones-alt"></i> Управляемая Медитация</h3>
+                        <p class="card-text">10-минутная аудио-медитация для глубокого расслабления и обретения внутреннего баланса.</p>
+                        <a href="https://www.youtube.com/results?search_query=%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D1%8F%D0%B5%D0%BC%D0%B0%D1%8F+%D0%BC%D0%B5%D0%B4%D0%B8%D1%82%D0%B0%D1%86%D0%B8%D1%8F" class="btn" target="_blank" rel="noopener noreferrer">Найти медитацию <i class="fas fa-external-link-alt"></i></a> </div>
+                    <div class="card tool-card">
+                        <i class="fas fa-wind card-icon"></i>
+                        <h3 class="card-title"><i class="fas fa-lungs"></i> Дыхательные Упражнения</h3>
+                        <p class="card-text">Простые техники дыхания, чтобы быстро успокоиться и снять стресс в любой ситуации.</p>
+                        <a href="https://www.google.com/search?q=%D0%B4%D1%8B%D1%85%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5+%D1%83%D0%BF%D1%80%D0%B0%D0%B6%D0%BD%D0%B5%D0%BD%D0%B8%D1%8F+%D0%B4%D0%BB%D1%8F+%D1%81%D0%BD%D1%8F%D1%82%D0%B8%D1%8F+%D1%81%D1%82%D1%80%D0%B5%D1%81%D1%81%D0%B0+%D0%B8+%D1%82%D1%80%D0%B5%D0%B2%D0%BE%D0%B3%D0%B8" class="btn" target="_blank" rel="noopener noreferrer">Узнать техники <i class="fas fa-external-link-alt"></i></a> </div>
+                    <div class="card tool-card">
+                        <i class="fas fa-comments card-icon"></i>
+                        <h3 class="card-title"><i class="fab fa-telegram-plane"></i> Чат Поддержки (Друзья)</h3>
+                        <p class="card-text">Ссылка на ваш приватный чат в Telegram/Discord, где всегда можно найти поддержку друзей.</p>
+                        <a href="https://t.me/your_support_chat_link" class="btn" target="_blank" rel="noopener noreferrer">Присоединиться <i class="fas fa-external-link-alt"></i></a> </div>
+                     <div class="card tool-card"> <i class="fas fa-journal-whills card-icon"></i>
+                        <h3 class="card-title"><i class="fas fa-link"></i> Полезные Ресурсы</h3>
+                        <p class="card-text">Ссылки на проверенные внешние ресурсы, связанные с ментальным здоровьем и самоподдержкой.</p>
+                        <a href="https://www.google.com/search?q=%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5+%D1%80%D0%B5%D1%81%D1%83%D1%80%D1%81%D1%8B+%D0%BF%D0%BE+%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%BC%D1%83+%D0%B7%D0%B4%D0%BE%D1%80%D0%BE%D0%B2%D1%8C%D1%8E" class="btn" target="_blank" rel="noopener noreferrer">Найти ресурсы <i class="fas fa-external-link-alt"></i></a> </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>Этот сайт создан с безграничной любовью и верой в тебя, Амина! ❤️</p>
+            <p>Ты невероятная, помни об этом каждую секунду.</p>
+            <div class="footer-links">
+                <a href="#">О проекте</a> | <a href="#">Контакты для друзей</a> |
+                <a href="#">Ресурсы поддержки</a>
+            </div>
+            <p class="copyright">© <span id="currentYear"></span> Твои Заботливые Друзья. Все права защищены (любовью).</p>
+        </div>
+    </footer>
+
+    <script>
+        // ============================================= //
+        // JAVASCRIPT ДЛЯ ИНТЕРАКТИВНОСТИ               //
+        // ============================================= //
+
+        // 1. Переключатель тем (светлая/темная)
+        const themeToggleButton = document.getElementById('theme-toggle');
+        const body = document.body;
+        const toggleIcon = themeToggleButton.querySelector('i');
+
+        // Проверка сохраненной темы в Local Storage при загрузке страницы
+        const savedTheme = localStorage.getItem('aminaSiteTheme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-theme');
+            toggleIcon.classList.remove('fa-moon');
+            toggleIcon.classList.add('fa-sun'); // Иконка солнца для темной темы
+        } else {
+             // Убедиться, что для светлой темы стоит луна
+            toggleIcon.classList.remove('fa-sun');
+            toggleIcon.classList.add('fa-moon'); // Иконка луны для светлой темы
+        }
+
+        // Обработчик клика по кнопке переключения темы
+        themeToggleButton.addEventListener('click', () => {
+            body.classList.toggle('dark-theme'); // Переключаем класс темной темы
+            if (body.classList.contains('dark-theme')) {
+                toggleIcon.classList.remove('fa-moon');
+                toggleIcon.classList.add('fa-sun'); // Меняем иконку на солнце
+                localStorage.setItem('aminaSiteTheme', 'dark'); // Сохраняем тему в Local Storage
+            } else {
+                toggleIcon.classList.remove('fa-sun');
+                toggleIcon.classList.add('fa-moon'); // Меняем иконку на луну
+                localStorage.setItem('aminaSiteTheme', 'light'); // Сохраняем тему в Local Storage
+            }
+        });
+
+        // 2. Плавная прокрутка к якорям (для ссылок в навигации и на главной)
+        document.querySelectorAll('.main-nav a[href^="#"], .hero-section a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault(); // Отменяем стандартное действие перехода по ссылке
+                const targetId = this.getAttribute('href'); // Получаем ID целевой секции
+                const targetElement = document.querySelector(targetId); // Находим целевой элемент
+
+                // Закрываем мобильное меню при клике на ссылку (если открыто)
+                const mainNav = document.getElementById('mainNav');
+                const menuToggle = document.getElementById('menu-toggle');
+                if (mainNav.classList.contains('is-open')) {
+                     mainNav.classList.remove('is-open');
+                     menuToggle.classList.remove('fa-times'); // Меняем иконку на гамбургер
+                     menuToggle.classList.add('fa-bars');
+                     body.style.overflow = ''; // Восстанавливаем скролл body
+                }
+
+
+                if (targetElement) {
+                    // Убираем класс 'active' со всех ссылок меню
+                    document.querySelectorAll('.main-nav a').forEach(link => link.classList.remove('active'));
+                    // Добавляем класс 'active' к текущей ссылке
+                    this.classList.add('active');
+
+                    const headerHeight = document.querySelector('.site-header').offsetHeight; // Получаем высоту шапки
+                    const offsetTop = targetElement.offsetTop - headerHeight - 15; // Вычисляем позицию для прокрутки с учетом шапки и небольшого отступа
+
+                    // Плавная прокрутка
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // 3. Счетчик символов в форме сообщения
+        const messageText = document.getElementById('messageText');
+        const charCounter = document.getElementById('charCounter');
+        const maxChars = 500; // Максимальное количество символов
+        if (messageText && charCounter) {
+            // Инициализация счетчика при загрузке страницы
+            charCounter.textContent = `${messageText.value.length}/${maxChars}`;
+
+            // Обработчик события ввода текста
+            messageText.addEventListener('input', () => {
+                const currentLength = messageText.value.length;
+                charCounter.textContent = `${currentLength}/${maxChars}`;
+                 // Изменение цвета счетчика при приближении к лимиту
+                 if (currentLength > maxChars * 0.9) {
+                     charCounter.style.color = 'var(--primary-color-light)'; // Цвет акцента
+                 } else if (currentLength === maxChars) {
+                     charCounter.style.color = 'red'; // Красный, если достигнут лимит
+                 } else {
+                     charCounter.style.color = 'inherit'; // Цвет по умолчанию
+                 }
+            });
+        }
+
+        // 4. Модальное окно для галереи (открытие и закрытие фото)
+        const modal = document.getElementById('photoModal');
+        const modalImg = document.getElementById('modalImage');
+        const captionText = document.getElementById('modalCaption');
+        const galleryImages = document.querySelectorAll('.photo-gallery-grid img');
+        const closeModal = document.getElementById('closePhotoModal');
+
+        // Добавляем обработчик клика для каждого фото в галерее
+        galleryImages.forEach(img => {
+            img.onclick = function(){
+                modal.style.display = "flex"; // Показываем модальное окно (используем flex для центрирования)
+                modalImg.src = this.src; // Устанавливаем источник фото
+                captionText.innerHTML = this.dataset.caption || this.alt; // Устанавливаем подпись (из data-caption или alt)
+                 body.style.overflow = 'hidden'; // Запрещаем скролл основной страницы
+            }
+        });
+
+        // Обработчик клика по кнопке закрытия модального окна
+        if(closeModal) {
+            closeModal.onclick = function() {
+                modal.style.display = "none"; // Скрываем модальное окно
+                 body.style.overflow = ''; // Восстанавливаем скролл основной страницы
+            }
+        }
+        // Обработчик клика вне изображения для закрытия модального окна
+        window.onclick = function(event) {
+            if (event.target === modal) { // Если клик был именно по фону модального окна
+                modal.style.display = "none";
+                 body.style.overflow = '';
+            }
+        }
+        // Обработчик нажатия клавиши Escape для закрытия модального окна
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && modal.style.display === 'flex') { // Если нажата Escape и модальное окно открыто
+                modal.style.display = 'none';
+                body.style.overflow = '';
+            }
+        });
+
+
+        // 5. Установка текущего года в футере
+        document.getElementById('currentYear').textContent = new Date().getFullYear(); // Устанавливаем текущий год
+
+        // 6. Анимация появления секций при прокрутке (используем Intersection Observer API)
+        const animatedSections = document.querySelectorAll('.section:not(#hero)'); // Выбираем все секции, кроме герой-секции
+        const observerOptions = {
+            root: null, // Наблюдаем относительно viewport
+            rootMargin: '0px',
+            threshold: 0.1 // Элемент считается видимым, когда 10% его площади попадает в viewport
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1'; // Делаем элемент видимым
+                    entry.target.style.transform = 'translateY(0)'; // Сдвигаем в финальную позицию
+                    entry.target.classList.add('is-visible'); // Добавляем класс (можно использовать для дополнительных стилей)
+                    observer.unobserve(entry.target); // Прекращаем наблюдение после анимации
+                }
+            });
+        }, observerOptions);
+
+        // Начинаем наблюдение за каждой анимируемой секцией
+        animatedSections.forEach(section => {
+            // Убедимся, что начальное состояние скрыто (opacity и transform уже заданы в CSS, это для надежности)
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(80px)'; // Соответствует CSS
+            observer.observe(section);
+        });
+
+        // 7. Демонстрация отправки формы (только выводит в консоль и показывает alert)
+        const aminaMessageForm = document.getElementById('aminaMessageForm');
+        if(aminaMessageForm) {
+            aminaMessageForm.addEventListener('submit', function(e){
+                e.preventDefault(); // Отменяем стандартную отправку формы
+                const message = this.querySelector('textarea[name="message"]').value;
+                if(message.trim() === "") {
+                    alert("Пожалуйста, напишите что-нибудь перед отправкой.");
+                    return;
+                }
+                console.log("Сообщение для Амины:", message); // Выводим сообщение в консоль браузера
+
+                // --- Здесь ДОЛЖЕН БЫТЬ код отправки сообщения на сервер ---
+                // Этот код закомментирован, так как требует серверной части
+                /*
+                fetch('/submit-message', { // Пример отправки на URL /submit-message
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message: message })
+                })
+                .then(response => response.json()) // Обработка ответа от сервера
+                .then(data => {
+                    console.log('Success:', data);
+                    alert("Спасибо! Ваше теплое сообщение передано.");
+                    this.reset(); // Сбросить форму после успешной отправки
+                    if (messageText && charCounter) { // Обновить счетчик символов
+                        charCounter.textContent = `0/${maxChars}`;
+                        charCounter.style.color = 'inherit';
+                    }
+                })
+                .catch((error) => { // Обработка ошибок
+                    console.error('Error:', error);
+                    alert("Произошла ошибка при отправке сообщения.");
+                });
+                */
+                // --- Конец блока серверного кода ---
+
+                // Демонстрационный alert для фронтенда (работает без сервера)
+                alert("Спасибо! Ваше теплое сообщение будет передано Амине. (Это демо-версия, сообщение выведено в консоль браузера и не сохраняется на сайте)");
+                this.reset(); // Сбросить форму
+                 if (messageText && charCounter) { // Обновить счетчик символов после сброса
+                    charCounter.textContent = `0/${maxChars}`;
+                    charCounter.style.color = 'inherit';
+                }
+            });
+        }
+
+        // 8. Обновление активного пункта меню при прокрутке страницы
+        const sections = document.querySelectorAll('main section'); // Все секции в main
+        const navLinks = document.querySelectorAll('.main-nav a'); // Все ссылки в навигации
+
+        const scrollObserverOptions = {
+            root: null, // Наблюдаем относительно viewport
+            rootMargin: '-40% 0px -40% 0px', // Создаем "активную" зону в центре viewport (40% сверху и 40% снизу не учитываются)
+            threshold: 0 // Элемент считается активным, как только его верхний или нижний край попадает в активную зону
+        };
+
+        const scrollObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) { // Если секция пересекает активную зону
+                    const targetId = '#' + entry.target.id; // Получаем ID текущей секции
+                     // Убираем класс 'active' со всех ссылок меню
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    // Находим ссылку в меню, соответствующую текущей секции, и добавляем ей класс 'active'
+                    const correspondingLink = document.querySelector(`.main-nav a[href="${targetId}"]`);
+                    if (correspondingLink) {
+                        correspondingLink.classList.add('active');
+                    }
+                }
+            });
+        }, scrollObserverOptions);
+
+        // Начинаем наблюдение за каждой секцией
+        sections.forEach(section => {
+            scrollObserver.observe(section);
+        });
+
+        // 9. Переключение мобильного меню ("гамбургера")
+        const menuToggle = document.getElementById('menu-toggle');
+        const mainNav = document.getElementById('mainNav');
+
+        if (menuToggle && mainNav) {
+             menuToggle.addEventListener('click', () => {
+                 mainNav.classList.toggle('is-open'); // Переключаем класс для открытия/закрытия меню
+                 // Меняем иконку "гамбургера" на "крестик" и обратно
+                 if (mainNav.classList.contains('is-open')) {
+                     menuToggle.classList.remove('fa-bars');
+                     menuToggle.classList.add('fa-times');
+                     body.style.overflow = 'hidden'; // Запрещаем скролл body при открытом меню
+                 } else {
+                      menuToggle.classList.remove('fa-times');
+                      menuToggle.classList.add('fa-bars');
+                      body.style.overflow = ''; // Восстанавливаем скролл body
+                 }
+             });
+        }
+
+
+    </script>
+</body>
+</html>
